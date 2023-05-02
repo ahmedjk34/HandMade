@@ -59,6 +59,10 @@ const productSchema = new mongoose.Schema({
     max: 5,
     required: true,
   },
+  in_stock: {
+    type: Number,
+    required: true,
+  },
   reviews: {
     type: [reviewSchema],
   },

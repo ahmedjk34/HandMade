@@ -5,6 +5,7 @@ export interface Product {
   photo: string;
   maker: User;
   price: number;
+  in_stock: number;
   catagories: string[];
   rating: number;
   reviews: Review[];
@@ -17,6 +18,8 @@ export interface Review {
   author: string;
 }
 export interface User {
+  _id: string;
   email: string;
   username: string;
+  profile_picture: string;
 }

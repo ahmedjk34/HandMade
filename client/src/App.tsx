@@ -4,6 +4,8 @@ import "./App.css";
 import Footer from "./Components/Footer";
 import Main from "./Components/Main/Main";
 import Nav from "./Components/Nav";
+import Product from "./Components/Product/Product";
+import Profile from "./Components/Profile-Page/Profile";
 type Props = {};
 
 function App({}: Props) {
@@ -12,9 +14,9 @@ function App({}: Props) {
       <Nav></Nav>
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/product/:id" />
+        <Route path="/product/:id" element={<Product />} />
         <Route path="/search" />
-        <Route path="user/:id"></Route>
+        <Route path="profile/:id" element={<Profile />}></Route>
         <Route path="*"></Route>
       </Routes>
       <Footer />

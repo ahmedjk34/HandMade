@@ -6,6 +6,7 @@ const path = require("path");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const productRouter = require("./routes/productRouter");
+const userRouter = require("./routes/userRouter");
 const app = express();
 const dotenv = require("dotenv");
 dotenv.config();
@@ -19,7 +20,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 //app.use("/user", userRouter);
 app.use("/product", productRouter);
-
+app.use("/user", userRouter);
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   next(httpErrors(404));
