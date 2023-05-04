@@ -5,6 +5,7 @@ import { Product } from "../../Types";
 import ErrorPage from "../ErrorPage";
 import PopularSection from "../Main/PopularSection";
 import RecommendedProducts from "./RecommendedProducts";
+import { Rating } from "react-simple-star-rating";
 
 type Props = {
   product: Product;
@@ -35,6 +36,12 @@ function ProductPage({ product }: Props) {
           <h4>
             {product.in_stock > 99 ? "99+" : product.in_stock} Left in Stock
           </h4>
+          <Rating
+            initialValue={product.rating}
+            allowFraction={true}
+            readonly={true}
+            size={30}
+          ></Rating>
           <div className="quantity-controller">
             <button
               onClick={() => {
@@ -67,7 +74,6 @@ function ProductPage({ product }: Props) {
         ></img>
         <h3>{product.maker.username}</h3>
       </div>
-      {/*! add reviews section*/}
       <RecommendedProducts
         catagories={product.catagories}
         id={product._id}

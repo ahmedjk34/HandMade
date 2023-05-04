@@ -42,7 +42,7 @@ function RecommendedProducts({ catagories, id }: Props) {
         //! Handel error properly
         console.log(error);
       });
-  }, []);
+  }, [id]);
   return (
     <div className="recommended-section">
       <h1>You May Also Like</h1>

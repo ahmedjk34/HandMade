@@ -35,3 +35,17 @@ exports.fetchRecommendedProducts = async function (req, res) {
     res.json(null);
   }
 };
+exports.fetchMakerProducts = async function (req, res) {
+  try {
+    const userId = req.params.id;
+    const products = await productModel
+      .find({})
+      .where("maker")
+      .equals(userId)
+      .select("title photo price rating");
+    res.json(products);
+  } catch (error) {
+    console.log(error);
+    res.json(error.message);
+  }
+};

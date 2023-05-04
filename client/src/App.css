@@ -207,7 +207,8 @@ footer > h2 {
 
 /*? PRODUCT PAGE*/
 
-.product-page {
+.product-page,
+.profile-page {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -270,6 +271,7 @@ footer > h2 {
   justify-content: center;
   align-items: center;
   font-family: "Signika", sans-serif;
+  gap: 0.25rem;
 }
 /*price */
 .purchase-section h1 {
@@ -363,4 +365,70 @@ footer > h2 {
 .recommended-product .product-info {
   width: 100%;
   justify-content: center;
+}
+
+/** profile page*/
+
+.profile-page {
+  /*reset the padding*/
+  padding: 0rem;
+}
+.main-info {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  font-family: "Signika", sans-serif;
+}
+.banner {
+  width: 100%;
+  object-fit: cover;
+}
+.pfp {
+  width: min(15rem, 35vw);
+  height: auto;
+  border-radius: 10rem;
+  position: relative;
+  top: 50%;
+  transform: translate(0%, -60%);
+}
+.main-info > h1 /*name*/ {
+  margin-top: -8rem;
+}
+.main-info > h4 {
+  font-family: "Raleway", sans-serif;
+}
+.collections {
+  /*TODO:implement*/
+}
+.shop {
+  width: 100%;
+  padding: 2rem;
+  font-family: "Signika", sans-serif;
+}
+/*handle when the shop array is empty*/
+.shop > h3 {
+  font-family: "Raleway", sans-serif;
+}
+.shop > div {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+
+  gap: 2rem;
+}
+
+.shop .product {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+.shop .product > h2 {
+  font-family: "Raleway", sans-serif;
+}
+.shop .product > h3 {
+  color: #00741a;
 }

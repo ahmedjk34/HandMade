@@ -11,15 +11,25 @@ export interface Product {
   reviews: Review[];
 }
 
-export interface Review {
-  title: string;
-  body: number;
-  stars: number;
-  author: string;
-}
 export interface User {
   _id: string;
   email: string;
   username: string;
   profile_picture: string;
+  banner: string;
+  bio: string;
+  collections: collection[];
+}
+
+export interface collection {
+  name: String;
+  cover: String;
+  items: Product[];
+}
+
+export interface Review {
+  title: string;
+  body: number;
+  stars: number;
+  author: string;
 }

@@ -31,6 +31,30 @@ const userSchema = new mongoose.Schema({
     default: ANONYMOUS_Banner,
     required: true,
   },
+  bio: {
+    type: String,
+    maxLength: 60,
+  },
   //TODO: add collections
+  collections: [
+    {
+      name: {
+        type: String,
+        required: true,
+        minLength: 4,
+        maxLength: 25,
+      },
+      cover: {
+        type: String,
+        required: true,
+      },
+      items: [
+        {
+          type: mongoose.SchemaTypes.ObjectId,
+          ref: "products",
+        },
+      ],
+    },
+  ],
 });
 module.exports = mongoose.model("user", userSchema);
