@@ -9,7 +9,7 @@ function PopularSection({}: Props) {
   const [items, setItems] = useState<Product[] | null>(null);
   useEffect(() => {
     axios
-      .get("http://localhost:3000/product")
+      .get("http://localhost:3000/product/popular")
       .then((products) => {
         setItems(products.data);
       })

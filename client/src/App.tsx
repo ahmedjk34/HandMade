@@ -6,6 +6,7 @@ import Main from "./Components/Main/Main";
 import Nav from "./Components/Nav";
 import Product from "./Components/Product/Product";
 import Profile from "./Components/Profile-Page/Profile";
+import SearchPage from "./Components/Search/SearchPage";
 type Props = {};
 
 function App({}: Props) {
@@ -15,7 +16,7 @@ function App({}: Props) {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/product/:id" element={<Product />} />
-        <Route path="/search" />
+        <Route path="/search" element={<SearchPage />} />
         <Route path="profile/:id" element={<Profile />}></Route>
         <Route path="*"></Route>
       </Routes>
