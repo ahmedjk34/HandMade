@@ -5,10 +5,18 @@ import React, { useEffect, useState } from "react";
 import { Rating } from "react-simple-star-rating";
 import { Product } from "../../Types";
 
-function CategoryDropdown({ title }: { title: String }) {
+function CategoryDropdown({
+  title,
+  categories,
+  setCategories,
+}: {
+  title: String;
+  categories: String[];
+  setCategories: React.Dispatch<React.SetStateAction<>>;
+}) {
   const [isActive, setIsActive] = useState<boolean>(false);
   const filterClass = `search-filter ${isActive ? "active" : ""}`;
-  const [activeFilters, setActiveFilters] = useState([]);
+
   const categoryFilters = [
     "Art",
     "Jewelry",
@@ -20,9 +28,9 @@ function CategoryDropdown({ title }: { title: String }) {
     "Romantic",
   ];
   function handelClick(filter: String) {
-    // if (activeFilters.includes(filter)) {
-    //   setActiveFilters((prev) => prev.filter((e) => e != filter));
-    // } else setActiveFilters((prev) => [...prev, filter]);
+    if (categories.includes(filter)) {
+      setCategories((prev) => prev.filter((e) => e != filter));
+    } else setCategories((prev) => [...prev, filter]);
   }
 
   return (
@@ -45,13 +53,22 @@ function CategoryDropdown({ title }: { title: String }) {
     </>
   );
 }
-function PriceDropdown({ title }: { title: String }) {
+function PriceDropdown({
+  title,
+  setPriceFilter,
+}: {
+  title: String;
+  setPriceFilter: React.Dispatch<React.SetStateAction<>>;
+}) {
   const [isActive, setIsActive] = useState<boolean>(false);
   const filterClass = `search-filter ${isActive ? "active" : ""}`;
   const [range, setRange] = React.useState([5, 100]);
   useEffect(() => {
     const getData = setTimeout(() => {
-      console.log("hi");
+      setPriceFilter({
+        minPrice: range[0],
+        maxPrice: range[1],
+      });
     }, 1000);
     return () => {
       clearTimeout(getData);
@@ -92,39 +109,43 @@ function PriceDropdown({ title }: { title: String }) {
   );
 }
 
-interface Filter {
-  minPrice: number;
-  maxPrice: number;
-  categories: [];
-}
 function SearchPage({}: Props) {
   const [products, setProducts] = useState<Product[] | null>(null);
-  const [filters, setFilters] = useState<Filter>({
+  const [priceFilter, setPriceFilter] = useState<{
+    minPrice: number;
+    maxPrice: number;
+  }>({
     minPrice: 5,
     maxPrice: 100,
-    categories: [],
   });
-
+  const [categories, setCategories] = useState([]);
   useEffect(() => {
     axios
       .get(`http://localhost:3000/product/search`, {
         params: {
-          minPrice: filters.minPrice,
-          maxPrice: filters.maxPrice,
-          categories: filters.categories,
+          minPrice: priceFilter?.minPrice,
+          maxPrice: priceFilter?.maxPrice,
+          categories: categories,
         },
       })
       .then((response) => setProducts(response.data))
       .catch((e) => console.log(e));
-  }, []);
+  }, [categories, priceFilter]);
 
   return (
     <div className="search-page">
       <input type="text" name="search" id="search-bar" />
       <div>
         <div className="filter-section">
-          <CategoryDropdown title="Category"></CategoryDropdown>
-          <PriceDropdown title="Price"></PriceDropdown>
+          <CategoryDropdown
+            title="Category"
+            categories={categories}
+            setCategories={setCategories}
+          ></CategoryDropdown>
+          <PriceDropdown
+            title="Price"
+            setPriceFilter={setPriceFilter}
+          ></PriceDropdown>
         </div>
         <div className="shop">
           <h1>Shop</h1>

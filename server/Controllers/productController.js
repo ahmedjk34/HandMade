@@ -86,7 +86,6 @@ exports.getSearchResults = async function (req, res) {
       .where("catagories")
       .in(categories || categoryFilters)
       .select("title photo price rating");
-    console.log(req.query.categories);
     res.json(products);
   } catch (error) {
     res.json(error.message);
